@@ -1,18 +1,23 @@
-    
+import java.util.*;
 
 class Solution {
-    int count =0;
+    int count = 0;
     public int solution(int[] numbers, int target) {
-        dfs(numbers,target,0,0);
+        int depth=0;
+        int sum =0;
+        dfs(depth, sum,numbers,target);
         return count;
     }
-    void dfs(int numbers[], int target, int index, int sum){
-        if(index == numbers.length){
-            if(sum == target) count++;
-            return;
-        }
-        dfs(numbers, target, index+1, sum + numbers[index]);
-        dfs(numbers, target, index+1, sum - numbers[index]);
+    public void dfs(int depth, int sum, int[] numbers, int target){
+        if (depth == numbers.length){
+            if(sum == target)count++;
+            // 숫자를 전부 썼다.
             
+        } else {
+            // 아직 숫자가 남았다. 더하거나 빼거나
+            dfs(depth+1, sum + numbers[depth], numbers, target);
+            dfs(depth+1, sum - numbers[depth], numbers, target);
+        }
+        
     }
 }
